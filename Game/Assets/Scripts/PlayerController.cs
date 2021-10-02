@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public float needKills = 0f;
     public List<GameObject> rooms;
     public Transform cam;
+
+    public GameObject Spawner;
     //private float 
 
     // Start is called before the first frame update14
@@ -23,13 +25,17 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.tag == "Exit" && needKills == kills)
+        if(col.tag == "Exit" && needKills <= kills)
         {
             System.Random rnd = new System.Random();
             int value = rnd.Next(0, rooms.Count);
             cam.position = new Vector3(rooms[value].transform.position.x, rooms[value].transform.position.y, -100);
             gameObject.transform.position = rooms[value].transform.position;
             rooms.RemoveAt(value);
+            Spawner.GetComponent<Spawner>().StartSpawn(20, new int[] {10, 10, 10});
+            var position = gameObject.transform.position;
+            position.z -= 26;
+            gameObject.transform.position = position;
         }
     }
 
