@@ -7,6 +7,8 @@ public class Punching : MonoBehaviour
     private float timeBetweenAttack;
     public float startTimeBetweenAttack;
 
+    public float other_range;
+    
     public Transform attackPose; // позиция игрока
     public float attackRange; // дальность атаки
     public LayerMask whatIsEnemy;
@@ -20,7 +22,7 @@ public class Punching : MonoBehaviour
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPose.position, attackRange, whatIsEnemy);
                for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
-                    enemiesToDamage[i].GetComponent<Enemy>().health -= damage;
+                    enemiesToDamage[i].GetComponent<Enemy>().Damage(damage);
                 }
             }
 
@@ -31,7 +33,6 @@ public class Punching : MonoBehaviour
             timeBetweenAttack -= Time.deltaTime;
         }
     }
-
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
@@ -39,3 +40,4 @@ public class Punching : MonoBehaviour
     }
 }
 
+//https://www.youtube.com/watch?v=fNImkqOPCPE&ab_channel=GraphicalDesign
