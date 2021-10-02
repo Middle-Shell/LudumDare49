@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public float time = 0f;
     public float needKills = 0f;
     public List<GameObject> rooms;
+    public Transform cam;
     //private float 
 
     // Start is called before the first frame update14
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
         {
             System.Random rnd = new System.Random();
             int value = rnd.Next(0, rooms.Count);
+            cam.position = new Vector3(rooms[value].transform.position.x, rooms[value].transform.position.y, -100);
             gameObject.transform.position = rooms[value].transform.position;
             rooms.RemoveAt(value);
         }
