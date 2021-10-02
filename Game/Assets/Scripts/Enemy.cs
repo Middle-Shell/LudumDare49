@@ -24,6 +24,15 @@ public class Enemy : MonoBehaviour
         direction.Normalize();
         movement = direction;
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.transform.tag == "Player")
+        {
+            collision.gameObject.GetComponent<PlayerController>().Damage(2f);
+        }
+    }
+
     private void FixedUpdate()
     {
         moveCharachter(movement);
@@ -33,11 +42,13 @@ public class Enemy : MonoBehaviour
     {
         rb.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
     }
+
     public void Damage(float damage)
     {
         health -= damage;
         if(health < 1)
         {
+            player.gameObject.GetComponent<PlayerController>().kills += 1;
             Destroy(gameObject);
         }
     }
