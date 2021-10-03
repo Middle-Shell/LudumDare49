@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public Transform cam;
 
     public GameObject Spawner;
+    private System.Random rnd = new System.Random();
     //private float 
 
     // Start is called before the first frame update14
@@ -32,7 +33,8 @@ public class PlayerController : MonoBehaviour
             cam.position = new Vector3(rooms[value].transform.position.x, rooms[value].transform.position.y, -100);
             gameObject.transform.position = rooms[value].transform.position;
             rooms.RemoveAt(value);
-            Spawner.GetComponent<Spawner>().StartSpawn(15, new int[] {10, 5, 0});
+            int countEnemy = rnd.Next(15, 40);
+            Spawner.GetComponent<Spawner>().StartSpawn(countEnemy, new int[] {((countEnemy / 2) * 2 / 3)+((countEnemy / 2) * 1 / 3)+(countEnemy/2), (countEnemy / 2) * 2 / 3, (countEnemy / 2) * 1 / 3 });
             var position = gameObject.transform.position;
             position.z -= 26;
             gameObject.transform.position = position;
