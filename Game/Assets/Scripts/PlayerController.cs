@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
             cam.position = new Vector3(rooms[value].transform.position.x, rooms[value].transform.position.y, -100);
             gameObject.transform.position = rooms[value].transform.position;
             rooms.RemoveAt(value);
-            Spawner.GetComponent<Spawner>().StartSpawn(20, new int[] {10, 10, 10});
+            Spawner.GetComponent<Spawner>().StartSpawn(15, new int[] {10, 5, 0});
             var position = gameObject.transform.position;
             position.z -= 26;
             gameObject.transform.position = position;
