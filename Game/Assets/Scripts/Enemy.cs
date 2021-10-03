@@ -100,8 +100,7 @@ public class Enemy : MonoBehaviour
         health -= damage;
         if(health < 1)
         {
-            print("Kill");
-            player.gameObject.GetComponent<PlayerController>().kills++;
+            player.gameObject.GetComponent<PlayerController>().kills += 1;
             Destroy(gameObject, .35f);
             anim.animation.Play("die");
         }

@@ -7,7 +7,6 @@ public class Spawner : MonoBehaviour
 
     public GameObject[] EnemyList;
     private Vector2 startPosition;
-    private System.Random rnd = new System.Random();
 
 
 
@@ -22,29 +21,28 @@ public class Spawner : MonoBehaviour
             {
                 if (typeEnemy[i] > 0)
                 {
-                    StartCoroutine(Spawn(rnd.Next(5,100)/10, i, rnd.Next(-11, 12), rnd.Next(-11, 11)));
+                    Invoke("Spawn(i)", 0.3F);
                     typeEnemy[i]--;
                     countEnemy--;
-                    
                 }
                 i++;
             }
             
         }    
         //InvokeRepeating("Spawn", 0f, 0.3F);
-        //StartCoroutine(Stop(2f, "Spawn"));
+        StartCoroutine(Stop(2f, "Spawn"));
     }
 
-    IEnumerator Spawn(float delay, int i, int x, int y)
+    void Spawn(int i)
     {
-        yield return new WaitForSeconds(delay);
-        print(x +" "+ y);
+        System.Random rnd = new System.Random();
+        int x = rnd.Next(-11, 12);
+        int y = rnd.Next(-11, 11);
         Instantiate(EnemyList[i], new Vector3(this.startPosition.x + x, this.startPosition.y + y, -1f), Quaternion.identity);
-        StopCoroutine("Spawn");
     }
-    /*IEnumerator Stop(float delay, string name)
+    IEnumerator Stop(float delay, string name)
     {
         yield return new WaitForSeconds(delay);
         CancelInvoke(name);
-    }*/
+    }
 }
