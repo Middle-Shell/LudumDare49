@@ -6,9 +6,13 @@ public class Spawner : MonoBehaviour
 {
 
     public GameObject[] EnemyList;
+    private Vector2 startPosition;
+
+
 
     public void StartSpawn(int countEnemy, int[] typeEnemy)
     {
+        startPosition = gameObject.transform.position;
         print("start");
         //Spawn(0.2f);
         //TestCoroutine();
@@ -27,10 +31,11 @@ public class Spawner : MonoBehaviour
 
     void Spawn()
     {
+        
         System.Random rnd = new System.Random();
-        int x = rnd.Next(-13, 13);
-        int y = rnd.Next(-10, 8);
-        Instantiate(EnemyList[0], new Vector3(gameObject.transform.position.x + x, gameObject.transform.position.y + y, -1f), Quaternion.identity);
+        int x = rnd.Next(-11, 12);
+        int y = rnd.Next(-11, 11);
+        Instantiate(EnemyList[0], new Vector3(this.startPosition.x + x, this.startPosition.y + y, -1f), Quaternion.identity);
     }
     IEnumerator Stop(float delay)
     {
