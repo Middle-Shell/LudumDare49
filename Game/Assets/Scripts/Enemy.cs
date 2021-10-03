@@ -18,6 +18,8 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private Transform firePoint;
     [SerializeField]
+    private Transform fireDot;
+    [SerializeField]
     private GameObject bulletPrefab;
     [SerializeField]
     private float bulletForce = 20f;
@@ -65,6 +67,7 @@ public class Enemy : MonoBehaviour
 
         if (!isShoot)
         {
+            isShoot = true;
             InvokeRepeating("Rotate", 0f, 0.1f);
             InvokeRepeating("Shoot", 0f, 1f);
         }
@@ -103,16 +106,19 @@ public class Enemy : MonoBehaviour
     void Rotate()
     {
         Vector2 plpos = new Vector2(player.position.x, player.position.y);
-        Vector2 lookDir = plpos - this.rb.position;
+        Vector2 fpPosition = new Vector2(firePoint.GetComponent<Transform>().position.x, firePoint.GetComponent<Transform>().position.y);
+        Vector2 lookDir = plpos - fpPosition;
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
-        this.rb.rotation = angle;
+        print(angle);
+        firePoint.GetComponent<Transform>().rotation = Quaternion.Lerp(firePoint.GetComponent<Transform>().rotation, player.rotation, Time.time * 1f); ;
+        firePoint.transform.Rotate(0.0f, 0.0f, angle, Space.Self);
+        //firePoint.GetComponent<Transform>().rotation = angle;
     }
     void Shoot()
     {
         print("Attack!");
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        GameObject bullet = Instantiate(bulletPrefab, fireDot.position, fireDot.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
-        isShoot = true;
+        rb.AddForce(fireDot.up * bulletForce, ForceMode2D.Impulse);
     }
 }
