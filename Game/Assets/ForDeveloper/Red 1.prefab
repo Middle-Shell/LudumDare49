@@ -99,6 +99,12 @@ MonoBehaviour:
   health: 5
   player: {fileID: 0}
   moveSpeed: 2.5
+  distance: 5
+  role: 1
+  firePoint: {fileID: 0}
+  bulletPrefab: {fileID: 3034254751126367033, guid: 452e3a99d2ec1144eb4c6d24fa592be0,
+    type: 3}
+  bulletForce: 20
 --- !u!50 &2447909684916264435
 Rigidbody2D:
   serializedVersion: 4
