@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
-    DragonBones.UnityArmatureComponent anim;
+    public DragonBones.UnityArmatureComponent anim;
     
     public float moveSpeed = 5f;
 
@@ -17,8 +18,9 @@ public class PlayerMovement : MonoBehaviour
     Vector2 movement;
     Vector3 mousePos;
 
+    [SerializeField]
     bool canMove = true;
-    bool die = false;
+    bool die = true;
 
     public GameObject Hand;
     public Transform firepoint;
@@ -28,7 +30,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        anim = GetComponent<DragonBones.UnityArmatureComponent>();
         audioSrc = GetComponent<AudioSource>();
         //InvokeRepeating("Transform", 0f, 0.1f);
     }
@@ -42,9 +43,12 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
-        RotateToCursor();
-        UpdateAnimation(movement.x, movement.y, Input.GetButtonDown("Fire1"), gameObject.GetComponent<PlayerController>().health);
+        if (canMove)
+        {
+            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+            RotateToCursor();
+            UpdateAnimation(movement.x, movement.y, Input.GetButtonDown("Fire1"), gameObject.GetComponent<PlayerController>().health);
+        }
         
     }
     void UpdateAnimation(float inputX, float inputY, bool attack, float health)
@@ -74,8 +78,11 @@ public class PlayerMovement : MonoBehaviour
                 // Идём
                 else if (anim.animation.lastAnimationName != "walk_horizontally")
                 {
-                    anim.animation.Play("walk_horizontally");
-                        if (!audioSrc.isPlaying)
+                    if(inputX != 0 )
+                        anim.animation.Play("walk_horizontally");
+                    else if(inputY != 0)
+                        anim.animation.Play("walk_vertically");
+                    if (!audioSrc.isPlaying)
                             audioSrc.Play();
                         /*if (transform.position.x >= 52f)
                         {
@@ -89,11 +96,12 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            audioSrc.Stop();
+            //audioSrc.Stop();
             if (die && health <= 0)
             {
-                anim.animation.Play("die");
                 die = false;
+                canMove = false;
+                anim.animation.Play("die");
             }
         }
     }
