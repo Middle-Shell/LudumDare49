@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public Transform player;
     public float moveSpeed = 2.5f;
     public float distance = 5f;
+    bool die = false;
 
     public byte role; //1 - easy enemy 2 - distance enemy 3 - Killer
 
@@ -25,6 +26,10 @@ public class Enemy : MonoBehaviour
     private float bulletForce = 20f;
     [SerializeField]
     private bool isShoot = false;
+
+    [Header("killer")]
+    [SerializeField]
+    private float distanceOfAttack;
 
 
     [SerializeField]
@@ -53,9 +58,26 @@ public class Enemy : MonoBehaviour
     void Easy()
     {
         Vector3 direction = player.position - transform.position;
+        if ((Vector3.Distance(player.position, this.transform.position) <= distanceOfAttack) && (anim.animation.lastAnimationName == "walk"))
+        {
+            player.gameObject.GetComponent<PlayerController>().Damage(1f);
+            anim.animation.Play("attack");
+        }
+        if (anim.animation.lastAnimationName == "attack" && ((Vector3.Distance(player.position, this.transform.position) > distanceOfAttack)))
+        {
+            anim.animation.Play("walk");
+        }
         direction.Normalize();
         movement = direction;
         moveCharachter(movement);
+        if (player.transform.position.x > this.transform.position.x)
+        {
+            this.transform.localScale = new Vector2(0.6f, 0.6f);
+        }
+        else
+        {
+            this.transform.localScale = new Vector2(-0.6f, 0.6f);
+        }
     }
     void Distance()
     {
@@ -64,7 +86,7 @@ public class Enemy : MonoBehaviour
         movement = direction;
         
         
-        if (Vector3.Distance(gameObject.transform.position, player.position) > 8f)
+        if (Vector3.Distance(gameObject.transform.position, player.position) > distance)
             moveCharachter(movement);
 
         if (!isShoot)
@@ -78,6 +100,16 @@ public class Enemy : MonoBehaviour
     void Killer()
     {
         Vector3 direction = player.position - transform.position;
+        if ((Vector3.Distance(player.position, this.transform.position) <= distanceOfAttack) && (anim.animation.lastAnimationName == "walk"))
+        {
+            player.gameObject.GetComponent<PlayerController>().Damage(5f);
+            anim.animation.Play("attack");
+        }
+        if (anim.animation.lastAnimationName == "attack"&&((Vector3.Distance(player.position, this.transform.position) > distanceOfAttack)))
+        {
+            anim.animation.Play("walk");
+        }
+            
         direction.Normalize();
         movement = direction;
         moveCharachter(movement);
@@ -93,18 +125,20 @@ public class Enemy : MonoBehaviour
 
     void moveCharachter(Vector2 direction)
     {
+        
         rb.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
     }
 
     public void Damage(float damage)
     {
         health -= damage;
-        if(health < 1)
+        if(health < 1 && !die)
         {
-            print("Kill");
             player.gameObject.GetComponent<PlayerController>().kills++;
             anim.animation.Play("die");
+            die = true;
             Destroy(gameObject, .35f);
+            CancelInvoke();
         }
     }
     void Rotate()
@@ -120,7 +154,7 @@ public class Enemy : MonoBehaviour
     void Shoot()
     {
         anim.animation.Play("attack");
-        GameObject bullet = Instantiate(bulletPrefab, fireDot.position, fireDot.rotation);
+        GameObject bullet = Instantiate(bulletPrefab, fireDot.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(fireDot.up * bulletForce, ForceMode2D.Impulse);
     }

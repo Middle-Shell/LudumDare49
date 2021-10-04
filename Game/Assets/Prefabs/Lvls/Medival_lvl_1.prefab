@@ -22760,7 +22760,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7273927322940619560}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerSpawner
   m_TagString: Enter
   m_Icon: {fileID: 0}

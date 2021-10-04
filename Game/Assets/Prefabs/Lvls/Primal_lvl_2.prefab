@@ -9624,7 +9624,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5251702835356079518}
   - component: {fileID: 5251702835356079513}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SpawnerPlayer
   m_TagString: Enter
   m_Icon: {fileID: 0}
@@ -9659,6 +9659,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyList:
   - {fileID: 2447909684916263951, guid: 83aa3dcb76729a74c94e02d2d25e1180, type: 3}
+  Max_time_spawn: 0
 --- !u!1 &5251702835359834148
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ TagManager:
   - enemy
   - Exit
   - Enter
+  - Generator
   layers:
   - Default
   - TransparentFX
@@ -16,9 +17,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Mediavel
+  - Primal
+  - SciFi
   - 
   - 
   - 
