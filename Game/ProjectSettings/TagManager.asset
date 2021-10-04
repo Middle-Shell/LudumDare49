@@ -7,6 +7,8 @@ TagManager:
   - enemy
   - Exit
   - Enter
+  - Generator
+  - target
   layers:
   - Default
   - TransparentFX

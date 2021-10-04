@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    public HealthBar healthBar;
 
     public float health = 20f;
     public float kills = 0f;
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
     {
         rooms = new List<GameObject>();
         rooms.AddRange(GameObject.FindGameObjectsWithTag("Enter"));
+        healthBar.SetMaxHealth((int)health);
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -44,7 +46,9 @@ public class PlayerController : MonoBehaviour
 
     public void Damage(float damage)
     {
+
         health -= damage;
+        healthBar.SetHealth((int)health);
         if (health < 0)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
