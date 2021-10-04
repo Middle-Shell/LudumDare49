@@ -187,7 +187,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 0}
   bulletForce: 20
   isShoot: 0
-  anim: {fileID: 0}
+  anim: {fileID: 3938667304774860573}
 --- !u!50 &3938667304774860575
 Rigidbody2D:
   serializedVersion: 4
