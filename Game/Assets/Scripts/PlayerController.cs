@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     public List<GameObject> rooms;
     public Transform cam;
 
+    [Range(15, 100)]
+    public int max_Count_Enemy;
     public GameObject Spawner;
     private System.Random rnd = new System.Random();
     //private float 
@@ -32,7 +34,7 @@ public class PlayerController : MonoBehaviour
             cam.position = new Vector3(rooms[value].transform.position.x, rooms[value].transform.position.y, -100);
             gameObject.transform.position = rooms[value].transform.position;
             rooms.RemoveAt(value);
-            int countEnemy = rnd.Next(15, 40);
+            int countEnemy = rnd.Next(15, max_Count_Enemy);
             var position = gameObject.transform.position;
             position.z -= 26;
             gameObject.transform.position = position;
