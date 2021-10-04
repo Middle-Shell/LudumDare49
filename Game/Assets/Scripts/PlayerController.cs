@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     public GameObject Spawner;
     private System.Random rnd = new System.Random();
     //private float 
+    [SerializeField]
+    private GameObject lumen;
 
     // Start is called before the first frame update14
     void Start()
@@ -39,14 +41,24 @@ public class PlayerController : MonoBehaviour
             position.z = -26;
             gameObject.transform.position = position;
             int RoomLayer = rooms[value].gameObject.layer;
-            SpawnStart(RoomLayer == 9?0: RoomLayer == 8?3:6);
+            lumen.SetActive(false);
+            print(RoomLayer);
+            if (RoomLayer != 11)
+                SpawnStart(RoomLayer == 9 ? 0 : RoomLayer == 8 ? 3 : 6);
+            else
+            {
+                lumen.SetActive(true);
+                needKills = 0;
+            }
             rooms.RemoveAt(value);
             kills = 0;
+
         }
     }
 
     private void SpawnStart(int typeRoom)
     {
+        print(typeRoom);
         int countEnemy = rnd.Next(15, max_Count_Enemy);
         needKills = ((countEnemy / 2) * 2 / 3) + (((countEnemy / 2) * 1 / 3) + (countEnemy / 2));
         Spawner.GetComponent<Spawner>().StartSpawn(countEnemy, new int[] { ((countEnemy / 2) * 2 / 3) + ((countEnemy / 2) * 1 / 3) + (countEnemy / 2), (countEnemy / 2) * 2 / 3, (countEnemy / 2) * 1 / 3 }, typeRoom);
