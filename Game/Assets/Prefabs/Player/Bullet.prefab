@@ -153,5 +153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 210a00f94cb9bcd45a97aa1cfb4763b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  orderOfHits: 1234
   hitEffect: {fileID: 3559687990415680684, guid: bc43e88c25d4f4f4c82cdfab66e77cff,
     type: 3}

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    public HealthBar healthBar;
 
     public float health = 20f;
     public float kills = 0f;
@@ -24,7 +25,7 @@ public class PlayerController : MonoBehaviour
     {
         rooms = new List<GameObject>();
         rooms.AddRange(GameObject.FindGameObjectsWithTag("Enter"));
-        SpawnStart(0);
+        healthBar.SetMaxHealth((int)health);
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -34,36 +35,23 @@ public class PlayerController : MonoBehaviour
             int value = rnd.Next(0, rooms.Count);
             cam.position = new Vector3(rooms[value].transform.position.x, rooms[value].transform.position.y, -100);
             gameObject.transform.position = rooms[value].transform.position;
-            
-            var position = gameObject.transform.position;
-            position.z = -26;
-            gameObject.transform.position = position;
-            int RoomLayer = rooms[value].gameObject.layer;
-            SpawnStart(RoomLayer == 9?0: RoomLayer == 8?3:6);
             rooms.RemoveAt(value);
-            kills = 0;
+            int countEnemy = rnd.Next(15, max_Count_Enemy);
+            var position = gameObject.transform.position;
+            position.z -= 26;
+            gameObject.transform.position = position;
+            Spawner.GetComponent<Spawner>().StartSpawn(countEnemy, new int[] {((countEnemy / 2) * 2 / 3)+((countEnemy / 2) * 1 / 3)+(countEnemy/2), (countEnemy / 2) * 2 / 3, (countEnemy / 2) * 1 / 3 });
         }
-    }
-
-    private void SpawnStart(int typeRoom)
-    {
-        int countEnemy = rnd.Next(15, max_Count_Enemy);
-        needKills = ((countEnemy / 2) * 2 / 3) + (((countEnemy / 2) * 1 / 3) + (countEnemy / 2));
-        Spawner.GetComponent<Spawner>().StartSpawn(countEnemy, new int[] { ((countEnemy / 2) * 2 / 3) + ((countEnemy / 2) * 1 / 3) + (countEnemy / 2), (countEnemy / 2) * 2 / 3, (countEnemy / 2) * 1 / 3 }, typeRoom);
-
     }
 
     public void Damage(float damage)
     {
+
         health -= damage;
+        healthBar.SetHealth((int)health);
         if (health < 0)
         {
-            StartCoroutine(Dead(0.6f));
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-    }
-    IEnumerator Dead(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

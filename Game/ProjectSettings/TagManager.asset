@@ -8,6 +8,7 @@ TagManager:
   - Exit
   - Enter
   - Generator
+  - target
   layers:
   - Default
   - TransparentFX
@@ -17,9 +18,9 @@ TagManager:
   - UI
   - 
   - 
-  - Mediavel
-  - Primal
-  - SciFi
+  - 
+  - 
+  - 
   - 
   - 
   - 
