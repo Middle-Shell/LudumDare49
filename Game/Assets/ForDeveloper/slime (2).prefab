@@ -52,7 +52,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -102,10 +102,12 @@ MonoBehaviour:
   distance: 5
   role: 2
   firePoint: {fileID: 0}
+  fireDot: {fileID: 0}
   bulletPrefab: {fileID: 3034254751126367033, guid: 452e3a99d2ec1144eb4c6d24fa592be0,
     type: 3}
   bulletForce: 20
   isShoot: 1
+  anim: {fileID: 0}
 --- !u!50 &7744299617335308320
 Rigidbody2D:
   serializedVersion: 4
@@ -178,7 +180,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -228,10 +230,12 @@ MonoBehaviour:
   distance: 5
   role: 2
   firePoint: {fileID: 0}
+  fireDot: {fileID: 0}
   bulletPrefab: {fileID: 3034254751126367033, guid: 452e3a99d2ec1144eb4c6d24fa592be0,
     type: 3}
   bulletForce: 20
   isShoot: 0
+  anim: {fileID: 0}
 --- !u!50 &7744299618624998438
 Rigidbody2D:
   serializedVersion: 4

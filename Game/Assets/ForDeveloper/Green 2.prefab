@@ -126,12 +126,10 @@ MonoBehaviour:
   moveSpeed: 5
   rb: {fileID: 7123097636494433805}
   cam: {fileID: 0}
-  fireDot: {fileID: 7123097636647232565}
-  rotationPivot: {fileID: 7123097636647232565}
-  hand: {fileID: 0}
-  Rukoyat: {fileID: 7123097638408349760}
-  Clickable: {fileID: 7123097637001617241}
-  RotationPivot: {fileID: 7123097637768450859}
+  coof: 1
+  Hand: {fileID: 0}
+  firepoint: {fileID: 0}
+  RotationPivot: {fileID: 0}
 --- !u!114 &7123097636494433795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1128,27 +1126,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8854177287005299051}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &7123097637768450859 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1745717542482391616, guid: a020cfd7187015e448e37015ee2afcce,
-    type: 3}
-  m_PrefabInstance: {fileID: 8854177287005299051}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &7123097637001617241 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1745717543922810418, guid: a020cfd7187015e448e37015ee2afcce,
-    type: 3}
-  m_PrefabInstance: {fileID: 8854177287005299051}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7123097637001617242 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1745717543922810417, guid: a020cfd7187015e448e37015ee2afcce,
-    type: 3}
-  m_PrefabInstance: {fileID: 8854177287005299051}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &7123097638408349760 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1745717543182043435, guid: a020cfd7187015e448e37015ee2afcce,
     type: 3}
   m_PrefabInstance: {fileID: 8854177287005299051}
   m_PrefabAsset: {fileID: 0}
