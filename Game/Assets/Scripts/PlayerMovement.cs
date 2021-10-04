@@ -65,14 +65,14 @@ public class PlayerMovement : MonoBehaviour
                     //rb.AddForce(new Vector2(4, 7), ForceMode2D.Impulse);
                 }
                 // Стоим на месте
-                else if (inputX == 0)
+                else if (inputX == 0 && inputY == 0)
                 {
-                    audioSrc.Stop();
+                    //audioSrc.Stop();
                     if (anim.animation.lastAnimationName != "idle")
                         anim.animation.Play("idle");
                 }
                 // Идём
-                else if (anim.animation.lastAnimationName != "goes")
+                else if (anim.animation.lastAnimationName != "walk_horizontally")
                 {
                     anim.animation.Play("walk_horizontally");
                         if (!audioSrc.isPlaying)

@@ -9,6 +9,9 @@ public class Spawner : MonoBehaviour
     private Vector2 startPosition;
     private System.Random rnd = new System.Random();
 
+    [Range(80, 200f)]
+    public int Max_time_spawn;
+
 
 
     public void StartSpawn(int countEnemy, int[] typeEnemy)
@@ -22,7 +25,7 @@ public class Spawner : MonoBehaviour
             {
                 if (typeEnemy[i] > 0)
                 {
-                    StartCoroutine(Spawn(rnd.Next(5,100)/10, i, rnd.Next(-11, 12), rnd.Next(-11, 11)));
+                    StartCoroutine(Spawn(rnd.Next(5, Max_time_spawn) /10, i, rnd.Next(-11, 12), rnd.Next(-11, 11)));
                     typeEnemy[i]--;
                     countEnemy--;
                     
