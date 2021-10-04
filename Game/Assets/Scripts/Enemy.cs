@@ -13,8 +13,8 @@ public class Enemy : MonoBehaviour
 
     private Rigidbody2D rb;
     private Vector2 movement;
-    
 
+    [Header("Shooting")]
     [SerializeField]
     private Transform firePoint;
     [SerializeField]
@@ -25,13 +25,14 @@ public class Enemy : MonoBehaviour
     private float bulletForce = 20f;
     [SerializeField]
     private bool isShoot = false;
+
+
     [SerializeField]
     DragonBones.UnityArmatureComponent anim;
 
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<DragonBones.UnityArmatureComponent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = this.GetComponent<Rigidbody2D>();
         switch (role)
@@ -71,15 +72,15 @@ public class Enemy : MonoBehaviour
             isShoot = true;
             InvokeRepeating("Rotate", 0f, 0.1f);
             InvokeRepeating("Shoot", 0f, 0.7f);
+            anim.animation.Play("walk");
         }
     }
     void Killer()
     {
         Vector3 direction = player.position - transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        firePoint.GetComponent<Rigidbody2D>().rotation = angle;
         direction.Normalize();
         movement = direction;
+        moveCharachter(movement);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -102,8 +103,8 @@ public class Enemy : MonoBehaviour
         {
             print("Kill");
             player.gameObject.GetComponent<PlayerController>().kills++;
-            Destroy(gameObject, .35f);
             anim.animation.Play("die");
+            Destroy(gameObject, .35f);
         }
     }
     void Rotate()
@@ -118,6 +119,7 @@ public class Enemy : MonoBehaviour
     }
     void Shoot()
     {
+        anim.animation.Play("attack");
         GameObject bullet = Instantiate(bulletPrefab, fireDot.position, fireDot.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(fireDot.up * bulletForce, ForceMode2D.Impulse);
