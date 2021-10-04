@@ -5,6 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
 
+    public int Roomtype;
     public GameObject[] EnemyList;
     private Vector2 startPosition;
     private System.Random rnd = new System.Random();
@@ -14,7 +15,7 @@ public class Spawner : MonoBehaviour
 
 
 
-    public void StartSpawn(int countEnemy, int[] typeEnemy)
+    public void StartSpawn(int countEnemy, int[] typeEnemy, int typeRoom)
     {
         startPosition = gameObject.transform.position;
         print("start");
@@ -23,9 +24,11 @@ public class Spawner : MonoBehaviour
             int i = 0;
             while (i < 3)
             {
+                print(typeRoom + i);
                 if (typeEnemy[i] > 0)
                 {
-                    StartCoroutine(Spawn(rnd.Next(5, Max_time_spawn) /10, i, rnd.Next(-11, 12), rnd.Next(-11, 11)));
+                    
+                    StartCoroutine(Spawn(rnd.Next(5, Max_time_spawn) /10, typeRoom + i, rnd.Next(-10, 11), rnd.Next(-10, 10)));
                     typeEnemy[i]--;
                     countEnemy--;
                     
@@ -41,7 +44,6 @@ public class Spawner : MonoBehaviour
     IEnumerator Spawn(float delay, int i, int x, int y)
     {
         yield return new WaitForSeconds(delay);
-        print(x +" "+ y);
         Instantiate(EnemyList[i], new Vector3(this.startPosition.x + x, this.startPosition.y + y, -1f), Quaternion.identity);
         StopCoroutine("Spawn");
     }
