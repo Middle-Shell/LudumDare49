@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a64e5b0e436d4bed9780211ae245f7b, type: 3}
+  m_Name: Robot_we8974tg5_Data
+  m_EditorClassIdentifier: 
+  dataName: Robot_we8974tg5
+  dragonBonesJSON: {fileID: 4900000, guid: 71dda0ec76c92994c93b11b94d44c8a2, type: 3}
+  textureAtlas:
+  - textureAtlasJSON: {fileID: 4900000, guid: fb02709e487d2f9449ffe05263162c27, type: 3}
+    texture: {fileID: 2800000, guid: 8d0387b9902bc6c4cbf307ccde213fee, type: 3}
+    material: {fileID: 2100000, guid: c90ab40df63f5a949931bb0b2cc21586, type: 2}
+    uiMaterial: {fileID: 0}

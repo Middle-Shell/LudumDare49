@@ -13,10 +13,29 @@ public class Spawner : MonoBehaviour
     [Range(80, 200f)]
     public int Max_time_spawn;
 
+    public AudioClip[] audioClips;
+    public AudioSource AS;
 
 
     public void StartSpawn(int countEnemy, int[] typeEnemy, int typeRoom)
     {
+        AS = gameObject.GetComponent<AudioSource>();
+        if (typeRoom == 0)
+        {
+            AS.clip = audioClips[0];
+            AS.Play();
+        }
+        else if(typeRoom == 3)
+        {
+            AS.clip = audioClips[1];
+            AS.Play();
+        }
+        else
+        {
+            AS.clip = audioClips[2];
+            AS.Play();
+
+        }
         startPosition = gameObject.transform.position;
         print("start");
         while(countEnemy > 0)

@@ -57,14 +57,14 @@ public class PlayerMovement : MonoBehaviour
         {
   
                 // Атакуем
-                if (attack)
+                /*if (attack)
                 {
                     if (anim.animation.lastAnimationName != "ydar")
                         anim.animation.Play("ydar", 1);
                     audioSrc.Play();
-                }
+                }*/
                 // Ждём сперва окончания анимации
-                else if ((anim.animation.lastAnimationName == "ydar") && anim.animation.isPlaying)
+                if ((anim.animation.lastAnimationName == "ydar") && anim.animation.isPlaying)
                 {
                     //rb.AddForce(new Vector2(4, 7), ForceMode2D.Impulse);
                 }
@@ -74,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
                     //audioSrc.Stop();
                     if (anim.animation.lastAnimationName != "idle")
                         anim.animation.Play("idle");
+                    audioSrc.Stop();
                 }
                 // Идём
                 else if (anim.animation.lastAnimationName != "walk_horizontally")

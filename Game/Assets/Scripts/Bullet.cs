@@ -9,20 +9,22 @@ public class Bullet : MonoBehaviour
     ////public int orderOfHits; не сохраняется
     //private int hitObjectNumber;
     public GameObject hitEffect;
+    public float damage = 2f;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //print(collision.transform.name);
-        GameObject effect =  Instantiate(hitEffect, transform.position, Quaternion.identity);
+        GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
         Destroy(effect, .45f);
-        if(collision.transform.tag == "enemy")
+        if (collision.transform.tag == "enemy")
         {
-            collision.gameObject.GetComponent<Enemy>().Damage(2f);
+            collision.gameObject.GetComponent<Enemy>().Damage(damage);
         }
         if (collision.transform.tag == "Player")
         {
-            collision.gameObject.GetComponent<PlayerController>().Damage(2f);
+            collision.gameObject.GetComponent<PlayerController>().Damage(damage);
         }
+        Destroy(gameObject);
         //if (collision.transform.tag == "target")
         //{
         //    print("HIT IT");
@@ -40,8 +42,8 @@ public class Bullet : MonoBehaviour
         //    //    Destroy(collision.gameObject);
         //    //}
         //    //    orderOfHits = orderOfHits / 10;
-            
+
         //}
-            Destroy(gameObject);
+        Destroy(gameObject);
     }
 }

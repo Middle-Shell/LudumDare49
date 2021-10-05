@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a64e5b0e436d4bed9780211ae245f7b, type: 3}
+  m_Name: KisaRoBot_wsreu6wr_Data
+  m_EditorClassIdentifier: 
+  dataName: KisaRoBot_wsreu6wr
+  dragonBonesJSON: {fileID: 4900000, guid: d2484a83d28d6934f8bdde9b5ffe8048, type: 3}
+  textureAtlas:
+  - textureAtlasJSON: {fileID: 4900000, guid: e6d2f30ae5d426546abf8a6631007b67, type: 3}
+    texture: {fileID: 2800000, guid: be5fe21e22f987945adb23ee6e381364, type: 3}
+    material: {fileID: 2100000, guid: e30fa890bd7090e42b6d45ec757157be, type: 2}
+    uiMaterial: {fileID: 0}
